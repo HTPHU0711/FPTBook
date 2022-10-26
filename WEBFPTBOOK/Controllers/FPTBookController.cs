@@ -12,7 +12,7 @@ namespace WEBFPTBOOK.Controllers
     public class FPTBookController : Controller
     {
         // Create a manage
-        DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
+        SqlDataContext data = new SqlDataContext();
         private List<Book> GetBookNew(int count)
         {
             //sap xep

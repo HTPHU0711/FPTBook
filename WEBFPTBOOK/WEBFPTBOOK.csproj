@@ -146,10 +146,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\DatabaseFPTBookContext.designer.cs">
+    <Compile Include="Models\Sql.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseFPTBookContext.dbml</DependentUpon>
+      <DependentUpon>Sql.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -188,13 +188,13 @@
     <Content Include="product_imgs\KH_VTLT.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Models\DatabaseFPTBookContext.dbml">
+    <Content Include="Models\Sql.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DatabaseFPTBookContext.designer.cs</LastGenOutput>
+      <LastGenOutput>Sql.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Models\DatabaseFPTBookContext.dbml.layout">
-      <DependentUpon>DatabaseFPTBookContext.dbml</DependentUpon>
+    <None Include="Models\Sql.dbml.layout">
+      <DependentUpon>Sql.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

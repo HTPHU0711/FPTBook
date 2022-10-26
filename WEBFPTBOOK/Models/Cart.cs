@@ -7,7 +7,7 @@ namespace WEBFPTBOOK.Models
 {
     public class Cart
     {
-        DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
+        SqlDataContext data = new SqlDataContext();
         public int IBookID { get; set; }
         public string IBookName { get; set; }
         public string IBookPic { get; set; }

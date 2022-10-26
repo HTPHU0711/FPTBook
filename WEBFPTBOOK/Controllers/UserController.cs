@@ -14,7 +14,7 @@ namespace WEBFPTBOOK.Controllers
     public class UserController : Controller
     {
         // create object manage data
-        DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
+        SqlDataContext data = new SqlDataContext();
         // GET: User
         public ActionResult Index()
         {

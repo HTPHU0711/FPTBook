@@ -20,12 +20,10 @@ namespace WEBFPTBOOK.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-    using System.ComponentModel.DataAnnotations;
-	using System.Web;
-    using System.ComponentModel.DataAnnotations.Schema;
-
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="FPTBook")]
-	public partial class DatabaseFPTBookContextDataContext : System.Data.Linq.DataContext
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="FPTBook")]
+	public partial class SqlDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -58,36 +56,36 @@ namespace WEBFPTBOOK.Models
     partial void DeletePublisher(Publisher instance);
     #endregion
 		
-		public DatabaseFPTBookContextDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["FPTBookConnectionString"].ConnectionString, mappingSource)
+		public SqlDataContext() : 
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["FPTBookConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DatabaseFPTBookContextDataContext(string connection) : 
-				base(connection, mappingSource)
-		{
-			OnCreated();
-		}
-
-		public DatabaseFPTBookContextDataContext(System.Data.IDbConnection connection) : 
+		public SqlDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DatabaseFPTBookContextDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public SqlDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DatabaseFPTBookContextDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public SqlDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
-
+		
+		public SqlDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+				base(connection, mappingSource)
+		{
+			OnCreated();
+		}
+		
 		public System.Data.Linq.Table<Admin> Admins
 		{
 			get
@@ -572,7 +570,6 @@ namespace WEBFPTBOOK.Models
 		private EntityRef<Topic> _Topic;
 		
 		private EntityRef<Publisher> _Publisher;
-
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -994,7 +991,9 @@ namespace WEBFPTBOOK.Models
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
 		private int _CustomerID;
+		
 		private string _FullName;
 		
 		private string _UserName;
@@ -1040,7 +1039,6 @@ namespace WEBFPTBOOK.Models
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		
 		public int CustomerID
 		{
 			get

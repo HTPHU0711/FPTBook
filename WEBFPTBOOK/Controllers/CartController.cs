@@ -9,7 +9,7 @@ namespace WEBFPTBOOK.Controllers
 {
     public class CartController : Controller
     {
-        DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
+        SqlDataContext data = new SqlDataContext();
         // GET: Cart
         public List<Cart> GetCart()
         {

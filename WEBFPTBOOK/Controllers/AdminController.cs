@@ -10,7 +10,7 @@ namespace WEBFPTBOOK.Controllers
     public class AdminController : Controller
     {
         // create object manage data
-        DatabaseFPTBookContextDataContext data = new DatabaseFPTBookContextDataContext();
+        SqlDataContext data = new SqlDataContext();
         // GET: Admin
         public ActionResult Index()
         {
