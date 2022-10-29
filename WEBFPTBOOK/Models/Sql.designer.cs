@@ -33,12 +33,12 @@ namespace WEBFPTBOOK.Models
     partial void InsertAdmin(Admin instance);
     partial void UpdateAdmin(Admin instance);
     partial void DeleteAdmin(Admin instance);
-    partial void InsertTopic(Topic instance);
-    partial void UpdateTopic(Topic instance);
-    partial void DeleteTopic(Topic instance);
     partial void InsertAuthor(Author instance);
     partial void UpdateAuthor(Author instance);
     partial void DeleteAuthor(Author instance);
+    partial void InsertTopic(Topic instance);
+    partial void UpdateTopic(Topic instance);
+    partial void DeleteTopic(Topic instance);
     partial void InsertBook(Book instance);
     partial void UpdateBook(Book instance);
     partial void DeleteBook(Book instance);
@@ -94,19 +94,19 @@ namespace WEBFPTBOOK.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Topic> Topics
-		{
-			get
-			{
-				return this.GetTable<Topic>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Author> Authors
 		{
 			get
 			{
 				return this.GetTable<Author>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Topic> Topics
+		{
+			get
+			{
+				return this.GetTable<Topic>();
 			}
 		}
 		
@@ -269,120 +269,6 @@ namespace WEBFPTBOOK.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Topic")]
-	public partial class Topic : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TopicID;
-		
-		private string _TopicName;
-		
-		private EntitySet<Book> _Books;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTopicIDChanging(int value);
-    partial void OnTopicIDChanged();
-    partial void OnTopicNameChanging(string value);
-    partial void OnTopicNameChanged();
-    #endregion
-		
-		public Topic()
-		{
-			this._Books = new EntitySet<Book>(new Action<Book>(this.attach_Books), new Action<Book>(this.detach_Books));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TopicID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TopicID
-		{
-			get
-			{
-				return this._TopicID;
-			}
-			set
-			{
-				if ((this._TopicID != value))
-				{
-					this.OnTopicIDChanging(value);
-					this.SendPropertyChanging();
-					this._TopicID = value;
-					this.SendPropertyChanged("TopicID");
-					this.OnTopicIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TopicName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string TopicName
-		{
-			get
-			{
-				return this._TopicName;
-			}
-			set
-			{
-				if ((this._TopicName != value))
-				{
-					this.OnTopicNameChanging(value);
-					this.SendPropertyChanging();
-					this._TopicName = value;
-					this.SendPropertyChanged("TopicName");
-					this.OnTopicNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Topic_Book", Storage="_Books", ThisKey="TopicID", OtherKey="TopicID")]
-		public EntitySet<Book> Books
-		{
-			get
-			{
-				return this._Books;
-			}
-			set
-			{
-				this._Books.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Books(Book entity)
-		{
-			this.SendPropertyChanging();
-			entity.Topic = this;
-		}
-		
-		private void detach_Books(Book entity)
-		{
-			this.SendPropertyChanging();
-			entity.Topic = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Author")]
 	public partial class Author : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -538,6 +424,120 @@ namespace WEBFPTBOOK.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Topic")]
+	public partial class Topic : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TopicID;
+		
+		private string _TopicName;
+		
+		private EntitySet<Book> _Books;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTopicIDChanging(int value);
+    partial void OnTopicIDChanged();
+    partial void OnTopicNameChanging(string value);
+    partial void OnTopicNameChanged();
+    #endregion
+		
+		public Topic()
+		{
+			this._Books = new EntitySet<Book>(new Action<Book>(this.attach_Books), new Action<Book>(this.detach_Books));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TopicID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TopicID
+		{
+			get
+			{
+				return this._TopicID;
+			}
+			set
+			{
+				if ((this._TopicID != value))
+				{
+					this.OnTopicIDChanging(value);
+					this.SendPropertyChanging();
+					this._TopicID = value;
+					this.SendPropertyChanged("TopicID");
+					this.OnTopicIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TopicName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string TopicName
+		{
+			get
+			{
+				return this._TopicName;
+			}
+			set
+			{
+				if ((this._TopicName != value))
+				{
+					this.OnTopicNameChanging(value);
+					this.SendPropertyChanging();
+					this._TopicName = value;
+					this.SendPropertyChanged("TopicName");
+					this.OnTopicNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Topic_Book", Storage="_Books", ThisKey="TopicID", OtherKey="TopicID")]
+		public EntitySet<Book> Books
+		{
+			get
+			{
+				return this._Books;
+			}
+			set
+			{
+				this._Books.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Books(Book entity)
+		{
+			this.SendPropertyChanging();
+			entity.Topic = this;
+		}
+		
+		private void detach_Books(Book entity)
+		{
+			this.SendPropertyChanging();
+			entity.Topic = null;
 		}
 	}
 	

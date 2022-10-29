@@ -63,8 +63,10 @@ namespace WEBFPTBOOK.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddBook(Book bookpic, HttpPostedFileBase fileupload)
+        public ActionResult AddBook(Book bookpic,Book book,HttpPostedFileBase fileupload)
         {
+            data.Books.InsertOnSubmit(book);
+            data.SubmitChanges();
             ViewBag.TopicID = new SelectList(data.Topics.ToList().OrderBy(n => n.TopicName), "TopicID", "TopicName");
             ViewBag.PubID = new SelectList(data.Publishers.ToList().OrderBy(n => n.PubName), "PubID", "PubName");
             
@@ -128,16 +130,45 @@ namespace WEBFPTBOOK.Controllers
         }
         public ActionResult EditBook(int id)
         {
-            Book book = data.Books.SingleOrDefault(n => n.BookID == id);
-            ViewBag.BookID = book.BookID;
-            if (book == null)
+            using (var context = new SqlDataContext())
             {
-                Response.StatusCode = 404;
-                return null;
+                var data = context.Books.Where(x => x.BookID == id).SingleOrDefault();
+                return View(data);
             }
-            return View(book);
-
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditBook(int id, Book model)
+
+        {
+            using (var context = new SqlDataContext())
+            {
+                var data = context.Books.FirstOrDefault(x => x.BookID == id);
+              
+                if (data == null)
+                {
+                    Response.StatusCode = 404;
+                    return null;
+                }
+                else
+                {
+                    
+                    data.BookName = model.BookName;
+                    data.Price = model.Price;
+                    data.BookDesc = model.BookDesc;
+                    data.BookPic = model.BookPic;
+                    data.DayUpdate = model.DayUpdate;
+                    data.Quality = model.Quality;
+                    data.TopicID = model.TopicID;
+                    data.PubID = model.PubID;
+                    context.SubmitChanges();
+
+                }
+                return View();
+
+            }
+        }
+
         //Create Publisher manage
         [HttpGet]
         public ActionResult Publisher()

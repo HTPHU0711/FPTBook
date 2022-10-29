@@ -1,17 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FPTBook" Class="SqlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-KIO8B8L2;Initial Catalog=FPTBook;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FPTBookConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-I36E8GB\KHAN;Initial Catalog=FPTBook;User ID=sa;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FPTBookConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Admin" Member="Admins">
     <Type Name="Admin">
       <Column Name="UserAdmin" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="PassAdmin" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="FullName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Topic" Member="Topics">
-    <Type Name="Topic">
-      <Column Name="TopicID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TopicName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Topic_Book" Member="Books" ThisKey="TopicID" OtherKey="TopicID" Type="Book" />
     </Type>
   </Table>
   <Table Name="dbo.Author" Member="Authors">
@@ -22,6 +15,13 @@
       <Column Name="AuthDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Phone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Author_BookWriter" Member="BookWriters" ThisKey="AuthID" OtherKey="AuthID" Type="BookWriter" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Topic" Member="Topics">
+    <Type Name="Topic">
+      <Column Name="TopicID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TopicName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Topic_Book" Member="Books" ThisKey="TopicID" OtherKey="TopicID" Type="Book" />
     </Type>
   </Table>
   <Table Name="dbo.Book" Member="Books">
